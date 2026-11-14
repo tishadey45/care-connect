@@ -26,7 +26,7 @@ export default function Banner() {
 
           <div className="flex flex-wrap gap-4 pt-2">
             <Link
-              href="#upcoming-events"
+              href="upcoming-events"
               className="rounded-full bg-green-700 px-7 py-3.5 font-semibold text-white shadow-lg transition hover:bg-green-800"
             >
               Explore Events →
