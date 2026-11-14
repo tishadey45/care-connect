@@ -97,7 +97,7 @@ function InfoRow({
         <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
           {label}
         </p>
-        <p className="mt-1 break-words text-sm font-medium text-gray-800">
+        <p className="mt-1 wrap-break-word text-sm font-medium text-gray-800">
           {value}
         </p>
       </div>
@@ -179,7 +179,7 @@ export default async function EventDetailsPage({
             className="object-cover"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/30 to-transparent" />
 
           <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
             <Badge className="mb-4 h-7 bg-green-600 px-3.5 text-xs font-semibold text-white hover:bg-green-700">
