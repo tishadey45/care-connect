@@ -21,6 +21,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import JoinEventButton from "@/components/ui/JoinEventButton";
 import { Separator } from "@/components/ui/separator";
 
 type Organizer = {
@@ -323,13 +324,7 @@ export default async function EventDetailsPage({
               </CardContent>
 
               <CardFooter className="flex-col items-stretch gap-3 border-green-800 bg-transparent">
-                <Button
-                
-                  render={<a href="/joined-events" />}
-                  className="h-11 w-full rounded-full bg-white px-6 font-semibold text-green-800 transition hover:bg-green-50"
-                >
-                  Join This Event
-                </Button>
+                <JoinEventButton event={event} />
 
                 <Link
                   href="/upcoming-events"
