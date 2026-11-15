@@ -6,10 +6,12 @@ import Newsletter from "@/components/ui/Newsletter";
 export default function Home() {
   return (
     <div className="">
-      <Banner/>
+     <main>
+       <Banner/>
       <Feature/>
       <Gallery/> 
       <Newsletter/>
+     </main>
     </div>
   );
 }

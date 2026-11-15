@@ -161,7 +161,7 @@ export default async function EventDetailsPage({
       <div className="mx-auto max-w-6xl">
         {/* Back to events */}
         <Link
-          href="/events"
+          href="/upcoming-events"
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-green-200 bg-white px-5 py-2.5 text-sm font-semibold text-green-700 transition hover:bg-green-50"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -324,14 +324,15 @@ export default async function EventDetailsPage({
 
               <CardFooter className="flex-col items-stretch gap-3 border-green-800 bg-transparent">
                 <Button
-                  render={<a href={mailHref} />}
+                
+                  render={<a href="/joined-events" />}
                   className="h-11 w-full rounded-full bg-white px-6 font-semibold text-green-800 transition hover:bg-green-50"
                 >
                   Join This Event
                 </Button>
 
                 <Link
-                  href="/events"
+                  href="/upcoming-events"
                   className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-white/40 px-6 text-sm font-semibold text-white transition hover:bg-white/10"
                 >
                   Browse More Events

@@ -1,6 +1,7 @@
 "use client";
 
 import { EVENT_TYPES, addEvent } from "@/lib/events";
+import { authClient } from "@/lib/auth-client";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState, type FormEvent } from "react";
@@ -67,6 +68,7 @@ function FieldError({ message }: { message?: string }) {
 }
 
 export default function CreateEventPage() {
+  const { data: session } = authClient.useSession();
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<FormErrors>({});
   const [success, setSuccess] = useState("");
@@ -158,6 +160,17 @@ export default function CreateEventPage() {
       thumbnail: form.thumbnail.trim(),
       location: form.location.trim(),
       date: form.date,
+      // Store who created the event so it shows up on the Manage Events
+      // page and only its creator can edit or delete it.
+      ...(session?.user
+        ? {
+            organizer: {
+              name: session.user.name ?? "",
+              email: session.user.email,
+              photo: session.user.image ?? "",
+            },
+          }
+        : {}),
     };
 
     try {
