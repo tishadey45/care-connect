@@ -108,7 +108,7 @@ function InfoRow({
 
 export async function generateMetadata({
   params,
-}: PageProps<"/events/[id]">): Promise<Metadata> {
+}: PageProps<"/upcoming-events/[id]">): Promise<Metadata> {
   const { id } = await params;
   const event = await fetchEvent(id);
 
@@ -129,7 +129,7 @@ export async function generateMetadata({
 
 export default async function EventDetailsPage({
   params,
-}: PageProps<"/events/[id]">) {
+}: PageProps<"/upcoming-events/[id]">) {
   const { id } = await params;
   const event = await fetchEvent(id);
 
