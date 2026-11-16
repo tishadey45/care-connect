@@ -175,7 +175,7 @@ export default function CreateEventPage() {
 
     try {
    const res = await fetch(
-  `${process.env.NEXT_PUBLIC_API_URL}/upcoming-event`,
+  `${process.env.BASE_URL}/upcoming-event`,
   {
     method: "POST",
     headers: {
