@@ -44,14 +44,14 @@ type EventDetails = {
   organizer?: Organizer;
 };
 
-const API_BASE = "http://localhost:5000";
+
 const OBJECT_ID_PATTERN = /^[0-9a-f]{24}$/i;
 
 const fetchEvent = cache(async (id: string): Promise<EventDetails | null> => {
   if (!OBJECT_ID_PATTERN.test(id)) return null;
 
   try {
-    const res = await fetch(`${API_BASE}/upcoming-events/${id}`, {
+    const res = await fetch(`${process.env.BASE_URL}/upcoming-events/${id}`, {
       cache: "no-store",
     });
     if (!res.ok) return null;
