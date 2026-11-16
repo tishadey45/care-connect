@@ -1,3 +1,14 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import JoinEventButton from "@/components/ui/JoinEventButton";
+import { Separator } from "@/components/ui/separator";
 import {
   ArrowLeft,
   CalendarDays,
@@ -11,18 +22,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache, type ReactNode } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import JoinEventButton from "@/components/ui/JoinEventButton";
-import { Separator } from "@/components/ui/separator";
 
 type Organizer = {
   name?: string;
@@ -52,7 +51,9 @@ const fetchEvent = cache(async (id: string): Promise<EventDetails | null> => {
   if (!OBJECT_ID_PATTERN.test(id)) return null;
 
   try {
-    const res = await fetch(`${API_BASE}/event/${id}`, { cache: "no-store" });
+    const res = await fetch(`${API_BASE}/upcoming-events/${id}`, {
+      cache: "no-store",
+    });
     if (!res.ok) return null;
 
     const data: unknown = await res.json().catch(() => null);
@@ -131,6 +132,7 @@ export default async function EventDetailsPage({
   params,
 }: PageProps<"/upcoming-events/[id]">) {
   const { id } = await params;
+  console.log(id);
   const event = await fetchEvent(id);
 
   if (!event) notFound();
@@ -151,7 +153,7 @@ export default async function EventDetailsPage({
   const formattedDate = formatEventDate(event.eventDate || event.date);
   const mailSubject = encodeURIComponent(`Interested in ${event.title}`);
   const mailBody = encodeURIComponent(
-    `Hi ${organizerName},\n\nI would like to take part in "${event.title}" on ${formattedDate} at ${event.location}.\n\nThank you!`
+    `Hi ${organizerName},\n\nI would like to take part in "${event.title}" on ${formattedDate} at ${event.location}.\n\nThank you!`,
   );
   const mailHref = organizerEmail
     ? `mailto:${organizerEmail}?subject=${mailSubject}&body=${mailBody}`
@@ -295,13 +297,13 @@ export default async function EventDetailsPage({
               </CardContent>
 
               <CardFooter>
-                <Button
-                  render={<a href={mailHref} />}
-                  className="h-11 w-full rounded-full bg-green-700 px-6 font-semibold text-white transition hover:bg-green-800"
+                <a
+                  href={mailHref}
+                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-green-700 px-6 font-semibold text-white transition hover:bg-green-800"
                 >
                   <Mail className="h-4 w-4" />
                   Contact Organizer
-                </Button>
+                </a>
               </CardFooter>
             </Card>
 

@@ -13,7 +13,7 @@ interface Event {
 }
 
 export default async function AllEventsPage() {
-  const res = await fetch("http://localhost:5000/events", {
+  const res = await fetch("http://localhost:5000/upcoming-events", {
     cache: "no-store",
   });
 
